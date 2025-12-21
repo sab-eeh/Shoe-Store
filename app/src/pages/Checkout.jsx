@@ -52,7 +52,15 @@ export default function Checkout() {
     }
 
     const orderPayload = {
-      orderItems: cartItems,
+      orderItems: cartItems.map((item) => ({
+        productId: item.productId, // MUST exist in cart
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        quantity: item.quantity,
+        size: item.size,
+        color: item.color,
+      })),
       shippingAddress: shipping,
       paymentMethod,
       itemsPrice: subtotal,

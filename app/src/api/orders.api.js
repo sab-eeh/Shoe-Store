@@ -1,22 +1,23 @@
-import mockOrders from "./mockOrders";
+import axios from "axios";
 
 /**
- * CREATE ORDER (already done)
+ * CREATE ORDER
+ * @param {Object} orderData
  */
 export async function createOrder(orderData) {
-  console.log("ORDER PAYLOAD (mock):", orderData);
-
-  return {
-    _id: `ORD-${Math.floor(Math.random() * 10000)}`,
-    ...orderData,
-    isPaid: orderData.paymentMethod === "card",
-    createdAt: new Date().toISOString(),
-  };
+  const { data } = await axios.post("/api/orders", orderData);
+  return data;
 }
 
 /**
- * GET MY ORDERS
+ * GET ALL ORDERS
  */
 export async function getMyOrders() {
-  return mockOrders;
+  const { data } = await axios.get("/api/orders");
+  return data;
+}
+
+export async function getOrderById(id) {
+  const { data } = await axios.get(`/api/orders/${id}`);
+  return data;
 }

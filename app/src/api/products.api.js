@@ -1,69 +1,21 @@
-import mockProducts from "./mockProducts";
+import axios from "axios";
 
 /**
- * Simulate network delay
- */
-function delay(ms = 500) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-/**
- * GET /api/products
- * Filters are optional
+ * GET PRODUCTS
+ * @param {Object} filters
  */
 export async function getProducts(filters = {}) {
-  await delay();
+  const { data } = await axios.get("/api/products", {
+    params: filters,
+  });
 
-  let data = [...mockProducts];
-
-  const { search, category, minPrice, maxPrice, size, rating } = filters;
-
-  if (search) {
-    const keyword = search.toLowerCase();
-    data = data.filter(
-      (p) =>
-        p.name.toLowerCase().includes(keyword) ||
-        p.brand.toLowerCase().includes(keyword)
-    );
-  }
-
-  if (category) {
-    data = data.filter((p) => p.category === category);
-  }
-
-  if (minPrice !== undefined) {
-    data = data.filter((p) => p.price >= Number(minPrice));
-  }
-
-  if (maxPrice !== undefined) {
-    data = data.filter((p) => p.price <= Number(maxPrice));
-  }
-
-  if (size) {
-    data = data.filter((p) => p.sizes.includes(Number(size)));
-  }
-
-  if (rating) {
-    data = data.filter((p) => p.rating >= Number(rating));
-  }
-
-  return {
-    products: data,
-    total: data.length,
-  };
+  return data;
 }
 
 /**
- * GET /api/products/:id
+ * GET PRODUCT BY ID
  */
 export async function getProductById(id) {
-  await delay();
-
-  const product = mockProducts.find((p) => p._id === id);
-
-  if (!product) {
-    throw new Error("Product not found");
-  }
-
-  return product;
+  const { data } = await axios.get(`/api/products/${id}`);
+  return data;
 }

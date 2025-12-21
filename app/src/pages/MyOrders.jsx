@@ -4,6 +4,7 @@ import SectionHeading from "../components/common/SectionHeading";
 import EmptyState from "../components/common/EmptyState";
 import OrderCard from "../components/orders/OrderCard";
 import { getMyOrders } from "../api/orders.api";
+import { Link } from "react-router-dom";
 
 export default function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -35,7 +36,9 @@ export default function MyOrders() {
 
       <div className="mt-6 space-y-6">
         {orders.map((order) => (
-          <OrderCard key={order._id} order={order} />
+          <Link key={order._id} to={`/orders/${order._id}`} className="block">
+            <OrderCard order={order} />
+          </Link>
         ))}
       </div>
     </Page>
