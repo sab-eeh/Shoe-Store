@@ -45,24 +45,27 @@ export default function ProductDetail() {
       toast.error("Please select size & color");
       return;
     }
+
     addToCart(product, { size, color });
     toast.success("Added to cart");
   };
 
   return (
-    <Page>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <Page title={product.name}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <ProductGallery images={product.images} />
 
         <div>
           <Badge variant="primary">{product.category}</Badge>
 
-          <h1 className="mt-2 text-3xl font-extrabold">{product.name}</h1>
+          <h1 className="mt-3 text-3xl font-extrabold">{product.name}</h1>
           <p className="text-muted">{product.brand}</p>
 
           <div className="mt-4 text-2xl font-black">${product.price}</div>
 
-          <p className="mt-4 text-muted">{product.description}</p>
+          <p className="mt-4 text-muted leading-relaxed">
+            {product.description}
+          </p>
 
           <div className="mt-6">
             <h4 className="font-bold mb-2">Select Size</h4>

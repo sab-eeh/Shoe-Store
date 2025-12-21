@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 import Badge from "../common/Badge";
 import Button from "../common/Button";
 
+const IMAGE_BASE_URL = "http://localhost:5000";
+
 export default function ProductCard({ product }) {
   return (
     <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 300 }}
-      className="rounded-2xl border border-border bg-surface shadow-soft overflow-hidden flex flex-col"
+      whileHover={{ y: -8 }}
+      transition={{ type: "spring", stiffness: 260 }}
+      className="group rounded-2xl border border-border bg-surface shadow-soft overflow-hidden flex flex-col"
     >
-      <Link to={`/products/${product._id}`} className="block">
+      <Link to={`/products/${product._id}`} className="relative block">
         <img
-          src={product.images[0]}
+          src={`${IMAGE_BASE_URL}${product.images[0]}`}
           alt={product.name}
-          className="h-48 w-full object-cover"
+          className="h-52 w-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
         />
       </Link>
@@ -28,7 +30,7 @@ export default function ProductCard({ product }) {
         <p className="text-sm text-muted mt-1">{product.brand}</p>
 
         <div className="mt-auto">
-          <div className="flex items-center justify-between mt-3">
+          <div className="flex items-center justify-between mt-4">
             <span className="text-lg font-black">${product.price}</span>
             <span className="text-sm text-muted">⭐ {product.rating}</span>
           </div>

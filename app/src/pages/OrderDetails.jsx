@@ -21,6 +21,7 @@ export default function OrderDetails() {
       </Page>
     );
   }
+  const IMAGE_BASE_URL = "http://localhost:5000";
 
   return (
     <Page title="Order Details">
@@ -37,13 +38,21 @@ export default function OrderDetails() {
               key={index}
               className="flex gap-4 rounded-xl border border-border bg-surface p-4"
             >
+              {/* IMAGE */}
+              <img
+                src={`${IMAGE_BASE_URL}${item.image}`}
+                alt={item.name}
+                className="h-16 w-16 rounded-lg object-cover border"
+              />
+
               <div className="flex-1">
                 <div className="font-extrabold">{item.name}</div>
                 <div className="text-sm text-muted">
                   Size {item.size} · {item.color}
                 </div>
               </div>
-              <div className="font-bold">
+
+              <div className="font-bold whitespace-nowrap">
                 ${item.price} × {item.quantity}
               </div>
             </div>

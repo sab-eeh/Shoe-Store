@@ -16,19 +16,7 @@ export default function Page({ title, children }) {
       transition={{ duration: 0.22, ease: "easeOut" }}
       className="py-8"
     >
-      <div className="container-app">
-        {title ? (
-          <div className="mb-6">
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              {title}
-            </h1>
-            <p className="mt-2 text-sm text-muted">
-              Clean, modern shoe store UI (frontend-first, backend-ready).
-            </p>
-          </div>
-        ) : null}
-        {children}
-      </div>
+      <div className="container-app">{children}</div>
     </motion.div>
   );
 }

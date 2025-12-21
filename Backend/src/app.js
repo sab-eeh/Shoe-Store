@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import productRoutes from "./routes/product.routes.js";
 import orderRoutes from "./routes/order.routes.js";
@@ -10,13 +12,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* ================= HEALTH ================= */
-app.get("/api/health", (req, res) => {
-  res.json({
-    status: "OK",
-    message: "ShoeStore API is running",
-  });
-});
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/* ================= STATIC FILES ================= */
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 /* ================= ROUTES ================= */
 app.use("/api/products", productRoutes);
