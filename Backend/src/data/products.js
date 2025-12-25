@@ -21,11 +21,26 @@ const products = [
     inStock: true,
     stockCount: 40,
   },
+  {
+    name: "Air Force 1 '30",
+    brand: "Nike",
+    price: 300,
+    rating: 5,
+    reviewCount: 600,
+    category: "men-casual",
+    description:
+      "The Nike Air Force 1 '20 delivers classic court style with durable leather, responsive cushioning, and timeless everyday comfort.",
+    images: ["/uploads/AIRFORCE-20.jpg"],
+    colors: ["white", "black", "brown"],
+    sizes: [10, 11],
+    inStock: true,
+    stockCount: 20,
+  },
 
   {
     name: "Air Max 270",
     brand: "Nike",
-    price: 149.99,
+    price: 200,
     rating: 4.6,
     reviewCount: 378,
     category: "men-sports",
